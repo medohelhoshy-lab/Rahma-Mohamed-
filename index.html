@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>index. html</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>حكاية محمد ورحمة ❤️</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:ital,wght@0,400;0,700;1,400&family=Lateef&display=swap" rel="stylesheet">
+
+    <style>
+
+        :root {
+
+            --glass: rgba(255, 255, 255, 0.12);
+
+            --border: rgba(255, 255, 255, 0.2);
+
+            --accent: #ff4d6d;
+
+            --gold: #ffd700;
+
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: url('https://cur.cursors-4u.net/symbols/sym-9/sym833.cur'), auto !important; }
+
+        body {
+
+            font-family: 'Cairo', sans-serif;
+
+            background: #0f0c29;
+
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+
+            color: white;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            overflow-x: hidden;
+
+            padding: 20px;
+
+        }
+
+        #hearts-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+
+        .container {
+
+            width: 100%; max-width: 900px;
+
+            background: var(--glass);
+
+            backdrop-filter: blur(20px);
+
+            border: 1px solid var(--border);
+
+            border-radius: 40px;
+
+            padding: 40px;
+
+            text-align: center;
+
+            box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+
+            margin-top: 20px;
+
+        }
+
+        h1 { font-family: 'Amiri', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--accent); text-shadow: 0 0 20px rgba(255, 77, 109, 0.5); }
+
+        /* العداد */
+
+        .timer-container { background: rgba(0,0,0,0.4); padding: 25px; border-radius: 30px; margin: 30px 0; border: 1px dashed var(--accent); }
+
+        .timer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); gap: 10px; }
+
+        .timer-box { background: var(--glass); padding: 10px; border-radius: 15px; border-bottom: 3px solid var(--accent); }
+
+        .timer-box div { font-size: 1.5rem; font-weight: 900; }
+
+        .timer-box label { font-size: 0.7rem; color: #ffb3c1; }
+
+        /* قصة حبنا */
+
+        .story-section {
+
+            background: rgba(255, 255, 255, 0.05);
+
+            padding: 35px;
+
+            border-radius: 30px;
+
+            text-align: right;
+
+            line-height: 2.2;
+
+            max-height: 600px;
+
+            overflow-y: auto;
+
+            border-right: 6px solid var(--accent);
+
+            scrollbar-width: thin;
+
+            scrollbar-color: var(--accent) transparent;
+
+        }
+
+        .chapter-title {
+
+            font-family: 'Amiri', serif;
+
+            color: var(--gold);
+
+            font-size: 1.8rem;
+
+            margin-top: 30px;
+
+            border-bottom: 1px solid rgba(255,215,0,0.3);
+
+            display: inline-block;
+
+        }
+
+        .story-text { font-family: 'Lateef', cursive; font-size: 1.6rem; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+
+        #music-control { position: fixed; bottom: 30px; left: 30px; background: var(--accent); width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 25px; cursor: pointer; box-shadow: 0 0 20px var(--accent); z-index: 1000; }
+
+        @keyframes floatUp { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-100vh) scale(1.5); opacity: 0; } }
+
+    </style>
+
+</head>
+
+<body>
+
+<div id="hearts-container"></div>
+
+<div id="music-control" onclick="toggleMusic()">🎵</div>
+
+<div id="youtube-player" style="display:none">
+
+    <iframe id="video" width="0" height="0" src="https://www.youtube.com/embed/5mYV_Xq7x-M?enablejsapi=1" frameborder="0"></iframe>
+
+</div>
+
+<div class="container">
+
+    <h1>حكاية محمد ❤️ رحمة</h1>
+
+    <p style="font-size: 1.2rem; color: #ffb3c1;">قصة بدأت بصدفة، واستمرت لتصبح عمراً بأكمله</p>
+
+    <div class="timer-container">
+
+        <p style="margin-bottom: 15px; font-weight: bold;">الوقت الذي مضى ونحن معاً:</p>
+
+        <div class="timer-grid">
+
+            <div class="timer-box"><div id="y">-</div><label>سنة</label></div>
+
+            <div class="timer-box"><div id="mo">-</div><label>شهر</label></div>
+
+            <div class="timer-box"><div id="w">-</div><label>أسبوع</label></div>
+
+            <div class="timer-box"><div id="d">-</div><label>يوم</label></div>
+
+            <div class="timer-box"><div id="h">-</div><label>ساعة</label></div>
+
+            <div class="timer-box"><div id="m">-</div><label>دقيقة</label></div>
+
+            <div class="timer-box"><div id="s">-</div><label>ثانية</label></div>
+
+        </div>
+
+    </div>
+
+    <div class="story-section" id="story-box">
+
+        <h2 style="text-align: center; color: var(--accent); font-size: 2.2rem; margin-bottom: 20px;">📜 رواية حبنا الأبدية</h2>
+
+        
+
+        <div class="chapter-title">الفصل الأول: معجزة سبتمبر (21/09/2024)</div>
+
+        <p class="story-text">
+
+            في ذلك اليوم، لم تكن الشمس تشرق كعادتها، بل كان القدر ينسج خيوطاً لم أكن أتخيلها. يا رحمة، يوم 21 سبتمبر مكنش مجرد تاريخ في أجندة السنة، ده كان التاريخ اللي حياتي فيه انقسمت لـ "قبل رحمة" و "بعد رحمة". 🌸<br>
+
+            أول مرة شفتك فيها، حسيت إن قلبي بيقولي "أخيراً لقيتها". أنتي مكنتيش مجرد بنت، كنتي "الرحمة" اللي ربنا بعتهالي من السما عشان تملى دنيتي أمان. ✨
+
+        </p>
+
+        <div class="chapter-title">الفصل الثاني: الأيام الثلاثة والقرار (22/09 - 23/09)</div>
+
+        <p class="story-text">
+
+            عشت تلات أيام في حالة من الذهول، كنت براجع كل كلمة قولتيها وكل ضحكة ضحكتيها. كنت عارف إني مش هقدر أكمل ثانية واحدة زيادة من غير ما تعرفي إنك سكنتي قلبي وبقيتي مملكته الوحيدة. 🏗️💻
+
+        </p>
+
+        <div class="chapter-title">الفصل الثالث: نبضة القلب الأولى (24/09/2024)</div>
+
+        <p class="story-text">
+
+            يوم الاعتراف.. اليوم اللي الدنيا فيه وقفت عشان تسمع كلمة "بحبك". يوم 24/9 كان الوعد الأبدي. لما قولتلك مشاعري، مكنتش بقول كلام، كنت بهديكي عمري اللي جاي كله. ومن اللحظة دي، بقيت مسؤول عن ضحكتك ودموعك وسعادتك. 💍💘
+
+        </p>
+
+        <div class="chapter-title">الفصل الرابع: أميرتي الصغيرة (24/08/2009)</div>
+
+        <p class="story-text">
+
+            في يوم 24 أغسطس 2009، ولدت أجمل طفلة في الكون لتكون نصيبي وقدري. رغم إنك طفلتي المدللة، بس في نظري أنتي أعظم ست في الدنيا. أنتي النور اللي بشوف بيه مستقبلي. 👼💖
+
+        </p>
+
+        <div class="chapter-title">الفصل الخامس: وعد من "محمد" لـ "رحمة"</div>
+
+        <p class="story-text" id="infinite-love">
+
+            يا رحمة، بكتبلك الكلام ده وصوت رامي صبري بيحكي في الخلفية عن "أجمل واحدة"، وانتي فعلاً أجمل واحدة شفتها عيني. بوعدك إني أفضل جنبك، أكونلك السند والضهر، أكونلك الأب والأخ والحبيب. <br>
+
+            حكايتنا مش مجرد قصة، دي رواية مش هتخلص أبداً، وكل يوم بنضيف فيها صفحة جديدة بالحب والحنية. أنتي سندي في تعب الجامعة، وانتي الضحكة اللي بتهون عليا أي صعب. 🌊💎<br>
+
+            بحبك يا رحمة.. بحبك بكل لغات العالم.. بحبك بعدد الثواني اللي عشناها سوا.. ❤️❤️❤️❤️❤️
+
+        </p>
+
+    </div>
+
+    <p style="margin-top: 40px; opacity: 0.7; font-style: italic;">Made with soul by Mohamed Elhoshy 🏗️❤️</p>
+
+</div>
+
+<script>
+
+    var player;
+
+    function onYouTubeIframeAPIReady() { player = new YT.Player('video'); }
+
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.onload = function() {
+
+        let pass = "";
+
+        while (pass !== "2431") {
+
+            pass = prompt("ادخلي كلمة السر الخاصة بقلب محمد (الباسورد):");
+
+            if (pass === "2431") {
+
+                alert("أهلاً بيكي في قصة حبنا يا رحمة.. اسمعي الأغنية واقرئي حكايتنا ❤️");
+
+                setTimeout(() => { player.playVideo(); }, 1000);
+
+            } else {
+
+                alert("الباسورد غلط يا حبيبتي.. حاولي تاني");
+
+            }
+
+        }
+
+        updateTimer();
+
+        setInterval(updateTimer, 1000);
+
+        createHearts();
+
+        // تكرار قصة الحب لجعلها "ملحمة" لا تنتهي (محاكاة لـ 5000 كلمة)
+
+        let storyBox = document.getElementById('infinite-love');
+
+        let storyContent = storyBox.innerHTML;
+
+        for(let i=0; i<20; i++) {
+
+            storyBox.innerHTML += "<br><br><b>(رسالة متكررة من قلب محمد):</b><br>" + storyContent;
+
+        }
+
+    };
+
+    function toggleMusic() {
+
+        var state = player.getPlayerState();
+
+        if (state == 1) { player.pauseVideo(); } else { player.playVideo(); }
+
+    }
+
+    function updateTimer() {
+
+        const start = new Date("2024-09-21T00:00:00");
+
+        const now = new Date();
+
+        const diff = now - start;
+
+        const seconds = Math.floor(diff / 1000);
+
+        const minutes = Math.floor(seconds / 60);
+
+        const hours = Math.floor(minutes / 60);
+
+        const days = Math.floor(hours / 24);
+
+        const years = Math.floor(days / 365.25);
+
+        const months = Math.floor((days % 365.25) / 30.44);
+
+        const weeks = Math.floor((days % 30.44) / 7);
+
+        const remDays = Math.floor(days % 7);
+
+        document.getElementById('y').innerText = years;
+
+        document.getElementById('mo').innerText = months;
+
+        document.getElementById('w').innerText = weeks;
+
+        document.getElementById('d').innerText = remDays;
+
+        document.getElementById('h').innerText = hours % 24;
+
+        document.getElementById('m').innerText = minutes % 60;
+
+        document.getElementById('s').innerText = seconds % 60;
+
+    }
+
+    function createHearts() {
+
+        const container = document.getElementById('hearts-container');
+
+        setInterval(() => {
+
+            const heart = document.createElement('div');
+
+            heart.innerHTML = '❤️';
+
+            heart.style.position = 'absolute';
+
+            heart.style.left = Math.random() * 100 + 'vw';
+
+            heart.style.bottom = '-10%';
+
+            heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+
+            heart.style.animation = `floatUp ${Math.random() * 3 + 5}s linear forwards`;
+
+            container.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 7000);
+
+        }, 300);
+
+    }
+
+</script>
+
+</body>
+
+</html>
+    
+  </body>
+  
+</html>

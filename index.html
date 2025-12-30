@@ -1,396 +1,279 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>index. html</title>
-    
-
-  </head>
-    
-  <body>
-  <!DOCTYPE html>
-
 <html lang="ar" dir="rtl">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>حكاية محمد ورحمة ❤️</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:ital,wght@0,400;0,700;1,400&family=Lateef&display=swap" rel="stylesheet">
-
+    <title>Mohamed & Rahma | Cyber-Romance 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Orbitron:wght@400;900&family=Amiri:wght@700&display=swap" rel="stylesheet">
     <style>
-
         :root {
-
-            --glass: rgba(255, 255, 255, 0.12);
-
-            --border: rgba(255, 255, 255, 0.2);
-
-            --accent: #ff4d6d;
-
+            --neon: #ff0055;
+            --purple: #bc13fe;
+            --cyan: #00f3ff;
             --gold: #ffd700;
-
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: url('https://cur.cursors-4u.net/symbols/sym-9/sym833.cur'), auto !important; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
 
         body {
-
             font-family: 'Cairo', sans-serif;
-
-            background: #0f0c29;
-
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-
+            background: #000;
             color: white;
-
             min-height: 100vh;
-
-            display: flex;
-
-            flex-direction: column;
-
-            align-items: center;
-
-            overflow-x: hidden;
-
-            padding: 20px;
-
+            overflow: hidden;
+            background: radial-gradient(circle at center, #0f001a 0%, #000 100%);
         }
 
-        #hearts-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        #custom-cursor {
+            position: fixed; width: 12px; height: 12px; background: var(--cyan);
+            border-radius: 50%; pointer-events: none; z-index: 9999;
+            box-shadow: 0 0 15px var(--cyan);
+        }
 
-        .container {
+        #star-field { position: fixed; inset: 0; z-index: -1; }
 
-            width: 100%; max-width: 900px;
+        /* ================= بوابة 2026 ================= */
+        #login-screen {
+            position: fixed; inset: 0; display: flex; justify-content: center; align-items: center;
+            z-index: 2000; background: #000; transition: 1.5s;
+        }
 
-            background: var(--glass);
+        .radar-box {
+            background: rgba(0, 0, 0, 0.9); padding: 50px; border-radius: 40px;
+            border: 2px solid var(--neon); text-align: center;
+            box-shadow: 0 0 50px var(--neon); width: 90%; max-width: 450px;
+            position: relative; overflow: hidden;
+        }
 
-            backdrop-filter: blur(20px);
+        .radar-line {
+            position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--neon); box-shadow: 0 0 15px var(--neon);
+            animation: scan 3s linear infinite;
+        }
+        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
 
-            border: 1px solid var(--border);
+        #pass-input {
+            width: 100%; padding: 15px; border-radius: 10px; border: 1px solid var(--cyan);
+            background: #000; color: var(--gold); text-align: center; font-size: 1.5rem;
+            margin: 25px 0; outline: none; font-family: 'Orbitron';
+        }
 
-            border-radius: 40px;
+        .btn-start {
+            background: var(--neon); color: white; padding: 12px 40px; border-radius: 10px;
+            border: none; font-weight: bold; cursor: pointer; box-shadow: 0 0 20px var(--neon);
+        }
 
-            padding: 40px;
+        /* ================= المحتوى الرئيسي ================= */
+        #main-content {
+            display: none; opacity: 0; flex-direction: column; align-items: center;
+            height: 100vh; overflow-y: auto; padding: 40px 20px;
+        }
 
-            text-align: center;
+        .stats-bar {
+            background: rgba(255, 255, 255, 0.05); padding: 10px 30px; border-radius: 50px;
+            border: 1px solid var(--cyan); margin-bottom: 20px; font-family: 'Orbitron';
+            color: var(--cyan); font-size: 0.8rem;
+        }
 
-            box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+        .hero-title {
+            font-family: 'Amiri', serif; font-size: clamp(2.5rem, 8vw, 4.5rem);
+            text-shadow: 0 0 30px var(--neon); margin-bottom: 30px;
+        }
 
+        .timer-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 15px; width: 100%; max-width: 850px; margin-bottom: 40px;
+        }
+        .timer-card {
+            background: rgba(255,255,255,0.03); padding: 20px; border-radius: 20px;
+            border: 1px solid var(--purple); text-align: center; backdrop-filter: blur(10px);
+        }
+        .timer-card span { display: block; font-size: 1.8rem; font-weight: 900; color: var(--gold); }
+
+        /* حكايتنا - كروت بتنور */
+        .story-timeline { width: 100%; max-width: 800px; margin-bottom: 50px; }
+        .chapter-card {
+            background: rgba(255, 255, 255, 0.02); padding: 30px; border-radius: 25px;
+            margin-bottom: 20px; border-right: 5px solid var(--neon); text-align: right;
+            transition: 0.4s;
+        }
+        .chapter-card:hover { transform: scale(1.02); background: rgba(255, 0, 85, 0.05); }
+        .chapter-card h3 { color: var(--cyan); margin-bottom: 10px; font-family: 'Orbitron'; }
+
+        /* صفحة الرسالة السرية */
+        #message-page {
+            display: none; opacity: 0; flex-direction: column; align-items: center;
+            justify-content: center; min-height: 100vh; padding: 40px;
+        }
+        .final-msg {
+            background: rgba(0, 0, 0, 0.9); border: 2px solid var(--neon);
+            padding: 40px; border-radius: 40px; box-shadow: 0 0 40px var(--neon);
+            max-width: 800px; text-align: right; line-height: 2.2; font-size: 1.7rem;
+        }
+
+        .btn-action {
+            background: transparent; border: 2px solid var(--neon); color: white;
+            padding: 12px 30px; border-radius: 50px; cursor: pointer; transition: 0.3s;
             margin-top: 20px;
-
         }
-
-        h1 { font-family: 'Amiri', serif; font-size: clamp(2.5rem, 8vw, 4rem); color: var(--accent); text-shadow: 0 0 20px rgba(255, 77, 109, 0.5); }
-
-        /* العداد */
-
-        .timer-container { background: rgba(0,0,0,0.4); padding: 25px; border-radius: 30px; margin: 30px 0; border: 1px dashed var(--accent); }
-
-        .timer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); gap: 10px; }
-
-        .timer-box { background: var(--glass); padding: 10px; border-radius: 15px; border-bottom: 3px solid var(--accent); }
-
-        .timer-box div { font-size: 1.5rem; font-weight: 900; }
-
-        .timer-box label { font-size: 0.7rem; color: #ffb3c1; }
-
-        /* قصة حبنا */
-
-        .story-section {
-
-            background: rgba(255, 255, 255, 0.05);
-
-            padding: 35px;
-
-            border-radius: 30px;
-
-            text-align: right;
-
-            line-height: 2.2;
-
-            max-height: 600px;
-
-            overflow-y: auto;
-
-            border-right: 6px solid var(--accent);
-
-            scrollbar-width: thin;
-
-            scrollbar-color: var(--accent) transparent;
-
-        }
-
-        .chapter-title {
-
-            font-family: 'Amiri', serif;
-
-            color: var(--gold);
-
-            font-size: 1.8rem;
-
-            margin-top: 30px;
-
-            border-bottom: 1px solid rgba(255,215,0,0.3);
-
-            display: inline-block;
-
-        }
-
-        .story-text { font-family: 'Lateef', cursive; font-size: 1.6rem; color: #fff; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
-
-        #music-control { position: fixed; bottom: 30px; left: 30px; background: var(--accent); width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 25px; cursor: pointer; box-shadow: 0 0 20px var(--accent); z-index: 1000; }
-
-        @keyframes floatUp { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-100vh) scale(1.5); opacity: 0; } }
-
+        .btn-action:hover { background: var(--neon); box-shadow: 0 0 20px var(--neon); }
     </style>
-
 </head>
-
 <body>
 
-<div id="hearts-container"></div>
+<div id="custom-cursor"></div>
+<div id="star-field"></div>
 
-<div id="music-control" onclick="toggleMusic()">🎵</div>
-
-<div id="youtube-player" style="display:none">
-
-    <iframe id="video" width="0" height="0" src="https://www.youtube.com/embed/5mYV_Xq7x-M?enablejsapi=1" frameborder="0"></iframe>
-
+<div id="login-screen">
+    <div class="radar-box">
+        <div class="radar-line"></div>
+        <h1 style="font-family: 'Orbitron'; color: var(--neon);">2026 ACCESS</h1>
+        <p id="radar-text" style="color: var(--cyan); margin-top: 10px;">Scanning for my world...</p>
+        <input type="password" id="pass-input" placeholder="اكتبي التاريخ السري">
+        <button class="btn-start" onclick="openPortal()">ACTIVATE HEART</button>
+        <p id="error" style="color: var(--neon); margin-top: 15px;"></p>
+    </div>
 </div>
 
-<div class="container">
+<div id="main-content">
+    <div class="stats-bar" id="live-info">LOADING SESSION...</div>
+    <div class="hero-title">محمد ❤️ رحمة</div>
 
-    <h1>حكاية محمد ❤️ رحمة</h1>
+    <div class="timer-grid">
+        <div class="timer-card"><span id="y">-</span><label>سنة</label></div>
+        <div class="timer-card"><span id="mo">-</span><label>شهر</label></div>
+        <div class="timer-card"><span id="w">-</span><label>أسبوع</label></div>
+        <div class="timer-card"><span id="d">-</span><label>يوم</label></div>
+        <div class="timer-card"><span id="h">-</span><label>ساعة</label></div>
+        <div class="timer-card"><span id="m">-</span><label>دقيقة</label></div>
+        <div class="timer-card"><span id="s">-</span><label>ثانية</label></div>
+    </div>
 
-    <p style="font-size: 1.2rem; color: #ffb3c1;">قصة بدأت بصدفة، واستمرت لتصبح عمراً بأكمله</p>
-
-    <div class="timer-container">
-
-        <p style="margin-bottom: 15px; font-weight: bold;">الوقت الذي مضى ونحن معاً:</p>
-
-        <div class="timer-grid">
-
-            <div class="timer-box"><div id="y">-</div><label>سنة</label></div>
-
-            <div class="timer-box"><div id="mo">-</div><label>شهر</label></div>
-
-            <div class="timer-box"><div id="w">-</div><label>أسبوع</label></div>
-
-            <div class="timer-box"><div id="d">-</div><label>يوم</label></div>
-
-            <div class="timer-box"><div id="h">-</div><label>ساعة</label></div>
-
-            <div class="timer-box"><div id="m">-</div><label>دقيقة</label></div>
-
-            <div class="timer-box"><div id="s">-</div><label>ثانية</label></div>
-
+    <div class="story-timeline">
+        <div class="chapter-card">
+            <h3>31/05/2005 - ميلاد محمد🤴</h3>
+            <p>ده اليوم اللي جيت فيه الدنيا، والقدر كان بيجهزني عشان اللحظة اللي هقابلك فيها وتكوني أنتي نصيبي.</p>
         </div>
-
+        <div class="chapter-card">
+            <h3>24/08/2009 - ميلاد أميرتي👸</h3>
+            <p>اليوم اللي الأرض نورت فيه بأغلى إنسانة في حياتي. أنتي الهدية اللي ربنا بعتها ليا.</p>
+        </div>
+        <div class="chapter-card">
+            <h3>21/09/2024 - أول لقاء ❤️</h3>
+            <p>الصدفة اللي غيرت مسار عمري وخلت للحياة معنى بجد. من اليوم ده وبدأت حياتي الحقيقية.</p>
+        </div>
+        <div class="chapter-card" style="border-right-color: var(--gold);">
+            <h3>24/09/2024 - ميثاق العشق 💍</h3>
+            <p>اليوم اللي اعترفت فيه بحبي ليكي، ومن اللحظة دي بقيتي أنتي الملكة اللي بتحكم قلبي.</p>
+        </div>
     </div>
 
-    <div class="story-section" id="story-box">
-
-        <h2 style="text-align: center; color: var(--accent); font-size: 2.2rem; margin-bottom: 20px;">📜 رواية حبنا الأبدية</h2>
-
-        
-
-        <div class="chapter-title">الفصل الأول: معجزة سبتمبر (21/09/2024)</div>
-
-        <p class="story-text">
-
-            في ذلك اليوم، لم تكن الشمس تشرق كعادتها، بل كان القدر ينسج خيوطاً لم أكن أتخيلها. يا رحمة، يوم 21 سبتمبر مكنش مجرد تاريخ في أجندة السنة، ده كان التاريخ اللي حياتي فيه انقسمت لـ "قبل رحمة" و "بعد رحمة". 🌸<br>
-
-            أول مرة شفتك فيها، حسيت إن قلبي بيقولي "أخيراً لقيتها". أنتي مكنتيش مجرد بنت، كنتي "الرحمة" اللي ربنا بعتهالي من السما عشان تملى دنيتي أمان. ✨
-
-        </p>
-
-        <div class="chapter-title">الفصل الثاني: الأيام الثلاثة والقرار (22/09 - 23/09)</div>
-
-        <p class="story-text">
-
-            عشت تلات أيام في حالة من الذهول، كنت براجع كل كلمة قولتيها وكل ضحكة ضحكتيها. كنت عارف إني مش هقدر أكمل ثانية واحدة زيادة من غير ما تعرفي إنك سكنتي قلبي وبقيتي مملكته الوحيدة. 🏗️💻
-
-        </p>
-
-        <div class="chapter-title">الفصل الثالث: نبضة القلب الأولى (24/09/2024)</div>
-
-        <p class="story-text">
-
-            يوم الاعتراف.. اليوم اللي الدنيا فيه وقفت عشان تسمع كلمة "بحبك". يوم 24/9 كان الوعد الأبدي. لما قولتلك مشاعري، مكنتش بقول كلام، كنت بهديكي عمري اللي جاي كله. ومن اللحظة دي، بقيت مسؤول عن ضحكتك ودموعك وسعادتك. 💍💘
-
-        </p>
-
-        <div class="chapter-title">الفصل الرابع: أميرتي الصغيرة (24/08/2009)</div>
-
-        <p class="story-text">
-
-            في يوم 24 أغسطس 2009، ولدت أجمل طفلة في الكون لتكون نصيبي وقدري. رغم إنك طفلتي المدللة، بس في نظري أنتي أعظم ست في الدنيا. أنتي النور اللي بشوف بيه مستقبلي. 👼💖
-
-        </p>
-
-        <div class="chapter-title">الفصل الخامس: وعد من "محمد" لـ "رحمة"</div>
-
-        <p class="story-text" id="infinite-love">
-
-            يا رحمة، بكتبلك الكلام ده وصوت رامي صبري بيحكي في الخلفية عن "أجمل واحدة"، وانتي فعلاً أجمل واحدة شفتها عيني. بوعدك إني أفضل جنبك، أكونلك السند والضهر، أكونلك الأب والأخ والحبيب. <br>
-
-            حكايتنا مش مجرد قصة، دي رواية مش هتخلص أبداً، وكل يوم بنضيف فيها صفحة جديدة بالحب والحنية. أنتي سندي في تعب الجامعة، وانتي الضحكة اللي بتهون عليا أي صعب. 🌊💎<br>
-
-            بحبك يا رحمة.. بحبك بكل لغات العالم.. بحبك بعدد الثواني اللي عشناها سوا.. ❤️❤️❤️❤️❤️
-
-        </p>
-
+    <div style="display: flex; gap: 10px;">
+        <button class="btn-action" onclick="showPage('message-page')">افتحي رسالتي السرية 💌</button>
+        <button class="btn-action" style="border-color: var(--gold);" onclick="surprise()">تفعيل طاقة الحب 🎆</button>
     </div>
+    
+    <p style="margin-top: 50px; font-weight: bold; color: var(--neon);">Made for Rahma by Mohamed ❤️</p>
+</div>
 
-    <p style="margin-top: 40px; opacity: 0.7; font-style: italic;">Made with soul by Mohamed Elhoshy 🏗️❤️</p>
-
+<div id="message-page">
+    <div class="final-msg">
+        <h2 style="color: var(--gold); text-align: center; margin-bottom: 25px;">رسالة لعام 2026 ❤️</h2>
+        يا رحمة، وإحنا داخلين سنة 2026 سوا.. أنتي مش مجرد حبيبة، أنتي العمر اللي جاي كله. محمد بيوعدك إنه يفضل دايماً الأمان والسند ليكي. أنتي اللي بتنوري طريقي بضحكتك، وأنتي اللي بتخليني أحب الحياة. هفضل أحبك النهاردة وبكرة وللأبد. كل سنة وأنتي معايا يا رحمتي. ❤️💍🌸✨👸🤴
+        <br><br>
+        <center><button class="btn-action" onclick="showPage('main-content')">العودة للقصة ⬅️</button></center>
+    </div>
 </div>
 
 <script>
+    // الماوس
+    const cursor = document.getElementById('custom-cursor');
+    document.addEventListener('mousemove', e => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
 
-    var player;
-
-    function onYouTubeIframeAPIReady() { player = new YT.Player('video'); }
-
-    var tag = document.createElement('script');
-
-    tag.src = "https://www.youtube.com/iframe_api";
-
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    window.onload = function() {
-
-        let pass = "";
-
-        while (pass !== "2431") {
-
-            pass = prompt("ادخلي كلمة السر الخاصة بقلب محمد (الباسورد):");
-
-            if (pass === "2431") {
-
-                alert("أهلاً بيكي في قصة حبنا يا رحمة.. اسمعي الأغنية واقرئي حكايتنا ❤️");
-
-                setTimeout(() => { player.playVideo(); }, 1000);
-
-            } else {
-
-                alert("الباسورد غلط يا حبيبتي.. حاولي تاني");
-
-            }
-
+    // خلفية النجوم
+    function initStars() {
+        const field = document.getElementById('star-field');
+        for(let i=0; i<150; i++) {
+            const s = document.createElement('div');
+            s.style.position = 'absolute';
+            s.style.background = 'white';
+            s.style.width = Math.random()*2 + 'px';
+            s.style.height = s.style.width;
+            s.style.left = Math.random()*100 + '%';
+            s.style.top = Math.random()*100 + '%';
+            s.style.opacity = Math.random();
+            field.appendChild(s);
         }
+    }
+    initStars();
 
-        updateTimer();
+    function openPortal() {
+        if(document.getElementById('pass-input').value === '2431') {
+            document.getElementById('radar-text').innerText = "TARGET LOCATED: RAHMA ❤️";
+            setTimeout(() => {
+                document.getElementById('login-screen').style.transform = 'translateY(-100%) scale(0.8)';
+                document.getElementById('login-screen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('login-screen').style.display = 'none';
+                    document.getElementById('main-content').style.display = 'flex';
+                    document.getElementById('main-content').style.opacity = '1';
+                    document.body.style.overflow = 'auto';
+                    startApp();
+                }, 1000);
+            }, 1000);
+        } else { document.getElementById('error').innerText = 'خطأ في التاريخ السري! ❤️'; }
+    }
 
+    function startApp() {
         setInterval(updateTimer, 1000);
-
-        createHearts();
-
-        // تكرار قصة الحب لجعلها "ملحمة" لا تنتهي (محاكاة لـ 5000 كلمة)
-
-        let storyBox = document.getElementById('infinite-love');
-
-        let storyContent = storyBox.innerHTML;
-
-        for(let i=0; i<20; i++) {
-
-            storyBox.innerHTML += "<br><br><b>(رسالة متكررة من قلب محمد):</b><br>" + storyContent;
-
-        }
-
-    };
-
-    function toggleMusic() {
-
-        var state = player.getPlayerState();
-
-        if (state == 1) { player.pauseVideo(); } else { player.playVideo(); }
-
+        setInterval(() => {
+            const now = new Date();
+            const start = new Date("2024-09-21T00:00:00");
+            const beats = Math.floor((now - start) / 800);
+            document.getElementById('live-info').innerText = `${now.toLocaleString('ar-EG')} | HEARTS SYNCED: ${beats.toLocaleString()}`;
+        }, 1000);
     }
 
     function updateTimer() {
-
         const start = new Date("2024-09-21T00:00:00");
-
-        const now = new Date();
-
-        const diff = now - start;
-
-        const seconds = Math.floor(diff / 1000);
-
-        const minutes = Math.floor(seconds / 60);
-
-        const hours = Math.floor(minutes / 60);
-
-        const days = Math.floor(hours / 24);
-
-        const years = Math.floor(days / 365.25);
-
-        const months = Math.floor((days % 365.25) / 30.44);
-
-        const weeks = Math.floor((days % 30.44) / 7);
-
-        const remDays = Math.floor(days % 7);
-
-        document.getElementById('y').innerText = years;
-
-        document.getElementById('mo').innerText = months;
-
-        document.getElementById('w').innerText = weeks;
-
-        document.getElementById('d').innerText = remDays;
-
-        document.getElementById('h').innerText = hours % 24;
-
-        document.getElementById('m').innerText = minutes % 60;
-
-        document.getElementById('s').innerText = seconds % 60;
-
+        const diff = new Date() - start;
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById('y').innerText = Math.floor(d / 365);
+        document.getElementById('mo').innerText = Math.floor((d % 365) / 30);
+        document.getElementById('w').innerText = Math.floor((d % 30) / 7);
+        document.getElementById('d').innerText = d % 7;
+        document.getElementById('h').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        document.getElementById('m').innerText = Math.floor((diff / (1000 * 60)) % 60);
+        document.getElementById('s').innerText = Math.floor((diff / 1000) % 60);
     }
 
-    function createHearts() {
-
-        const container = document.getElementById('hearts-container');
-
-        setInterval(() => {
-
-            const heart = document.createElement('div');
-
-            heart.innerHTML = '❤️';
-
-            heart.style.position = 'absolute';
-
-            heart.style.left = Math.random() * 100 + 'vw';
-
-            heart.style.bottom = '-10%';
-
-            heart.style.fontSize = Math.random() * 20 + 20 + 'px';
-
-            heart.style.animation = `floatUp ${Math.random() * 3 + 5}s linear forwards`;
-
-            container.appendChild(heart);
-
-            setTimeout(() => heart.remove(), 7000);
-
-        }, 300);
-
+    function showPage(id) {
+        document.getElementById('main-content').style.display = 'none';
+        document.getElementById('message-page').style.display = 'none';
+        const p = document.getElementById(id);
+        p.style.display = 'flex';
+        setTimeout(() => p.style.opacity = '1', 50);
+        window.scrollTo(0,0);
     }
 
+    function surprise() {
+        alert("انفجار عشق لرحمة! 🎇❤️");
+        for(let i=0; i<60; i++) {
+            const h = document.createElement('div');
+            h.innerHTML = '❤️';
+            h.style.position = 'fixed'; h.style.left = '50%'; h.style.top = '50%';
+            h.style.fontSize = '20px'; h.style.transition = '2s';
+            document.body.appendChild(h);
+            setTimeout(() => {
+                h.style.transform = `translate(${(Math.random()-0.5)*1200}px, ${(Math.random()-0.5)*1200}px) scale(0)`;
+                h.style.opacity = '0';
+            }, 50);
+            setTimeout(() => h.remove(), 2000);
+        }
+    }
 </script>
-
 </body>
-
-</html>
-    
-  </body>
-  
 </html>
